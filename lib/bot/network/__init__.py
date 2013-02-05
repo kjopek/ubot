@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from urllib2 import Request, urlopen
+from requests import get
 
 class URLOpener(object):
     '''
@@ -15,9 +16,10 @@ class URLOpener(object):
     
         
     def open(self, url):
-        request = Request(url)
-        request.add_header('User-Agent', self.user_agent)
-        response = urlopen(request)
+        #request = Request(url)
+        #request.add_header('User-Agent', self.user_agent)
+        #response = urlopen(request)
         
         # return headers, data
-        return response.info(), response.read()
+        response = get(url)
+        return response.headers, response.text

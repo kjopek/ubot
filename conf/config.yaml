@@ -1,2 +1,37 @@
 initial:
-  sites: ['http://www.osnews.pl']
+  sites: ['http://www.onet.pl']
+  
+db:
+  name: "search"
+  user: "kj"
+  pass: ""
+  host: "localhost"
+  port: 5432
+
+logging:
+  version: 1
+
+  formatters:
+    simple:
+      format: '%(asctime)-15s %(levelname)-8s  %(processName)-12s (%(process)-d) %(name)-27s: %(message)s'
+    consolas:
+      format: '%(asctime)-15s %(levelname)-8s  %(name)-27s: %(message)s'
+
+  handlers:
+    console:
+      level: DEBUG
+      class: logging.StreamHandler
+      formatter: consolas
+      stream: ext://sys.stderr
+
+    file:
+      level: INFO
+      class : logging.handlers.RotatingFileHandler
+      formatter: simple
+      filename: ./crawler.log
+      maxBytes: 10000000
+      backupCount: 5
+
+  root:
+    level: DEBUG
+    handlers: [file, console]

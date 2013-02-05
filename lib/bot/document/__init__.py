@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import hashlib
 from BeautifulSoup import BeautifulSoup
 
@@ -15,13 +16,13 @@ class Document(object):
         self.sitename = sitename
         self.location = location
 
-        content_type = headers.getheader('Content-Type').split(';')[0]
+        content_type = headers['Content-Type'].split(';')[0]
 
         if content_type not in self.SUPPORTED_CONTENTS:
             raise IncorrectContentError(content_type)
 
         self.headers = headers
-        self.data = data
+        self.data = unicode(data)
         
         self.hash = self.hashme()
         
@@ -29,7 +30,7 @@ class Document(object):
     def hashme(self):
         if not hasattr(self, '_calculated_hash'):
             sha256 = hashlib.new('sha256')
-            sha256.update(self.data)
+            sha256.update(self.data.encode("utf-8"))
             self._calculated_hash = sha256.digest()
         return self._calculated_hash
     

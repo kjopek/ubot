@@ -8,7 +8,7 @@ import re
 
 class URLParser(object):
     '''
-    Class for parsing, splitting and matching urls.
+    Class for parsing and classifying urls.
     '''
     
     URL_TYPES = {
