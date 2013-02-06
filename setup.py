@@ -7,9 +7,9 @@ setup(name='Bot',
       url='http://www.agh.edu.pl',
       license='BSD',
       package_dir={'':'lib'},
-      packages=['bot'],
+      packages=['bot', 'bot.db', 'bot.document', 'bot.network'],
       package_data={'bot': ['sql/*.sql']},
-      data_files=[('conf', 'config/config.yaml')],
+      data_files=[('conf', ['conf/config.yaml'])],
       setup_requires=['ssjp>=0.0.1', 'PyYAML>=3.0.0'],
       install_requires=['ssjp>=0.0.1', 'PyYAML>=3.0.0']
       )
